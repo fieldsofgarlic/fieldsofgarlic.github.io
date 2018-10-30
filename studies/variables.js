@@ -13,7 +13,7 @@
  */
 
 // 1. declaration //
-let myName;
+var myName;
 
 /*
  * At the declaration phase, the variable myName is undefined because we have NOT initialized
@@ -30,56 +30,15 @@ myName = 'bob';
 console.log(myName); // prints => bob
 
 // NOTE: We can assign and re-assign anything to a variable - we cannot do this with constants //
-let myVariable = 1;
-let myVariable = true;
+var myVariable = 1;
+var myVariable = true;
 myVariable = "someString";
 
 /*
- * var, let, and const
- * 
- * this is helpful: https://dev.to/sarah_chima/var-let-and-const--whats-the-difference-69e
- * though it says that let and const are hoisted but not initialized, as opposed to other
- * sources I've read that say let and const are not hoisted at all. I suppose the result
- * is the same, either way.
- */
- 
-// 4. var - old-school variable declaration //
-/* 
- * after learning about let and const, I can't think of a reason to ever use var, except in
- * the demonstrative examples below
- */
-var name = 'Dave'; // this gets hoisted to the top of its scope and is available anywhere
+var - used to declare a variable 
+*/
+// 4. var //
 
-// 5. let - how the kids are declaring variables today //
-let age = 50; // this is scoped to its block only and is mutable
-// let age = 45; // this will not work [commented out because it produces a syntax error]
-
-// 6. const - most restrictive way to declare variables, in terms of scope and mutability //
-const pi = 3.1415 // this is scoped to its block only, but is immutable
-const list = [];
-list.push(pi);    // this works because values within reference-stored variables can be changed
-const gig = {
-    location: 'First Avenue',
-    date: '7/7/1977'
-};
-gig.date = '7/17/1977';  // this works for the same reason
-// like let-declared variables, const-declared variables can also not be redeclared
-
+// 5. let //
+// 6. const //
 // 7. hoisting //
-if ( true ) {
-    var state = 'calm';      // variable name, though declared here, is hoisted outside of this block
-    let guest = 'greg';      // not hoisted
-    const hope = 'eternal';  // sadly, not hoisted
-}
-console.log(state); // reports "calm"
-console.log(guest); // reports "error" - this is puzzling because I would have expected a ReferenceError
-console.log(hope);  // reports "ReferenceError"
-
-if ( false ) {
-    var state = 'calm';     // variable name is hoisted outside this block
-    let guest = 'greg';     // not hoisted
-    const hope = 'eternal'; // sadly, not hoisted
-}
-console.log(state); // reports undefined
-console.log(guest); // reports "error" - still puzzling
-console.log(hope);  // reports "ReferenceError"

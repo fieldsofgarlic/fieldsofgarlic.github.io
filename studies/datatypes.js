@@ -22,7 +22,7 @@ num = Math.PI;   // some functions or object properties/methods return numbers
 // 2. string - can hold a collection of characters, stored by value //
 let str = 'neato';
 str += ' is retro'; // the + operator concatenates strings: result 'neato is rstro'
-str.length();       // strings have many methods to modify them provide information about them
+str.length;       // strings have many methods to modify them provide information about them
 console.log(str[0]); // returns 'n' because strings are really arrays of characters
 
 // 3. boolean - can either be true or false, stored by value //
@@ -31,7 +31,7 @@ console.log( 4 > 5 ); // tests like these evaluate to a boolean
 
 // 4. array - a 0-indexed, ordered list of variables of any type, stored by reference //
 let list = [ 'string', 5, [ 'another', 'array' ], { genus: 'object', locale: 'in a list' }, true, null, undefined, 0/0 ];
-console.log( list[ 0 ] ); // reports 'string'
+console.log( list[ 1 ] ); // reports 'string'
 list.push( Infinity );    // arrays have beaucoup methods and properties
 
 // 5. object - a string-indexed, unordered collection of properties and methods, stored by reference //
@@ -50,7 +50,7 @@ console.log( divide( 4, 8 ) ); // reports 0.5
 
 let multiply = function ( a, b ) { // functions can also be declared anonymously and stored in a variable - by reference
     return a * b;
-}
+};
 console.log( multiply( 4, 8 ) ); // reports 32 
 
 // 7. undefined - used to indicate that a value has not been specified or has been deleted //
