@@ -3,10 +3,18 @@
  * including) end.
  */
 
+function range( start, end ) {
+    return [ ...Array( end + 1 - start ).keys() ].map( x => x + start );
+}
+
 /* Next, write a sum function that takes an array of numbers and returns
  * the sum of these numbers. Run the example program and see whether it
  * does indeed return 55.
  */
+ 
+function sum( arr ) {
+    return arr.reduce( ( x, y ) => x + y );
+}
 
 /* As a bonus assignment, modify your range function to take an optional
  * third argument that indicates the “step” value used when building the
