@@ -61,14 +61,14 @@ console.log( animal );
 animals = [];
 animals.push( animal );
 console.log( animals );
-let duck = { species: 'duck', name: 'Jerome', noises: ['quack', 'honk', 'sneeze', 'woosh'] };
+var duck = { species: 'duck', name: 'Jerome', noises: ['quack', 'honk', 'sneeze', 'woosh'] };
 animals.push( duck );
-console.log( duck );
+console.log( animals );
 animals.push(
     {
         name: 'Wazuu',
         species: 'wingding',
-        nosies: [ 'huh?', 'oh', 'hmmm' ]
+        noises: [ 'huh?', 'oh', 'hmmm' ]
     },
     {
         name: 'Lo Fye',
@@ -82,7 +82,7 @@ console.log( animals.length );
 //////////////////////////////////////////////////////////////////////
 // Step 7 - Making Friends ///////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-friends = []; // making this an array because it needs to hold a list
+var friends = []; // making this an array because it needs to hold a list
 
 function getRandom ( arr ) {
     return Math.floor( Math.random() * arr.length );

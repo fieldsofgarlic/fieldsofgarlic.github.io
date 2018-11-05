@@ -3,7 +3,12 @@
 //////////////////////////////////////////////////////////////////////
 
 function objectValues(object) {
-
+    return Object.values( object );
+    // let arr = [];
+    // for ( let key in object ) {
+    //     arr.push( object[ key ] );
+    // }
+    // return arr;
 } 
 
 //////////////////////////////////////////////////////////////////////
@@ -11,7 +16,12 @@ function objectValues(object) {
 //////////////////////////////////////////////////////////////////////
 
 function keysToString(object) {
-
+    return Object.keys( object ).join( ' ' );
+    // let str = '';
+    // for ( let key in object ) {
+    //     str += key + ' ';
+    // }
+    // return str.trim();
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -19,7 +29,14 @@ function keysToString(object) {
 //////////////////////////////////////////////////////////////////////
 
 function valuesToString(object) {
-    
+    return Object.values( object ).filter( v => typeof v === 'string' ).join( ' ' );
+    // let arr = [];
+    // for ( let key in object ) {
+    //     if ( typeof object[ key ] === 'string' ) {
+    //         arr.push( object[ key ] );
+    //     }
+    // }
+    // return arr.join( ' ' );
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -27,7 +44,7 @@ function valuesToString(object) {
 //////////////////////////////////////////////////////////////////////
 
 function arrayOrObject(collection) {
-    
+    return Object.prototype.toString.call( collection ).replace( /\[object (.*)\]/, "$1" ).toLowerCase();
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -35,7 +52,7 @@ function arrayOrObject(collection) {
 //////////////////////////////////////////////////////////////////////
 
 function capitalizeWord(string) {
-    
+    return string[0].toUpperCase() + string.slice(1).toLowerCase();
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -43,7 +60,7 @@ function capitalizeWord(string) {
 //////////////////////////////////////////////////////////////////////
 
 function capitalizeAllWords(string) {
-    
+    return string.split( ' ' ).map( s => capitalizeWord( s ) ).join( ' ' );
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -51,7 +68,7 @@ function capitalizeAllWords(string) {
 //////////////////////////////////////////////////////////////////////
 
 function welcomeMessage(object) {
-
+    return `Welcome ${capitalizeWord( object.name )}!`;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -59,7 +76,7 @@ function welcomeMessage(object) {
 //////////////////////////////////////////////////////////////////////
 
 function profileInfo(object) {
-
+    return `${ capitalizeWord( object.name ) } is a ${ capitalizeWord( object.species ) }`;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -67,7 +84,13 @@ function profileInfo(object) {
 //////////////////////////////////////////////////////////////////////
 
 function maybeNoises(object) {
-
+    return ( Array.isArray( object.noises ) && object.noises.length > 0 ) ? object.noises.join( ' ' ) : "there are no noises";
+    // if ( Array.isArray( object.noises ) && object.noises.length > 0 ) {
+    //     return object.noises.join( ' ' );
+    // }
+    // else {
+    //     return "there are no noises";
+    // }
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -75,7 +98,10 @@ function maybeNoises(object) {
 //////////////////////////////////////////////////////////////////////
 
 function hasWord(string, word) {
-
+    return string.includes( word );
+    // more ways to do it, that check for whole-word matches only
+    // return string.split( ' ' ).filter( w => w === word ).length > 0;
+    // return string.split( ' ' ).includes( word );
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -83,7 +109,7 @@ function hasWord(string, word) {
 //////////////////////////////////////////////////////////////////////
 
 function addFriend (name, object) {
-
+    if ( object.friends.push( name ) ) return object;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -91,7 +117,11 @@ function addFriend (name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function isFriend(name, object) {
-
+    return Array.isArray( object.friends ) ? object.friends.includes( name ) : false;
+    // if ( Array.isArray( object.friends ) ) {
+    //     return object.friends.includes( name );
+    // }
+    // return false;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -99,7 +129,16 @@ function isFriend(name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function nonFriends(name, array) {
-
+    return array.filter( p => ! isFriend( name, p ) && p.name !== name ).map( p => p.name );
+    // let arr = [];
+    
+    // for (let i = 0; i < array.length; i++) {
+    //     if ( ! isFriend( name, array[i] ) && array[i].name !== name ) {
+    //         arr.push( array[ i ].name );
+    //     }
+    // }
+    
+    // return arr;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -107,7 +146,7 @@ function nonFriends(name, array) {
 //////////////////////////////////////////////////////////////////////
 
 function updateObject(object, key, value) {
-
+    if ( object[ key ] = value ) return object;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -115,7 +154,7 @@ function updateObject(object, key, value) {
 //////////////////////////////////////////////////////////////////////
 
 function removeProperties(object, array) {
-
+    array.map( p => delete object[ p ] );
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -123,7 +162,7 @@ function removeProperties(object, array) {
 //////////////////////////////////////////////////////////////////////
 
 function dedup(array) {
-
+    return Object.keys( array ).map( s => parseInt( s ) ).filter( i => ! array.slice( 0, i ).includes( array[i] ) ).map( x => array[x] );
 }
 
 //////////////////////////////////////////////////////////////////////
