@@ -131,8 +131,7 @@ _.indexOf = ( a, v ) => parseInt( Object.keys( a ).filter( i => a[i] === v )[ 0 
 * Extra Credit:
 *   use _.each in your implementation
 */
-//_.filter = ( a, f ) => a.reduce( ( s, v ) => ( f( v, a[v], a ) ? s.push( v ) : [] ), [] );
-//_.filter = ( a, f ) => _.each( a, ( a, f ) => f );
+_.filter = ( a, f ) => a.reduce( ( n, e, i ) => ( f( e, i, a ) ? ( n.push( e ) ? n : n ) : n ), [] );
 
 /** _.reject()
 * Arguments:
@@ -146,7 +145,8 @@ _.indexOf = ( a, v ) => parseInt( Object.keys( a ).filter( i => a[i] === v )[ 0 
 * Examples:
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
-// _.reject = ( a, f ) => 
+_.reject = ( a, f ) => a.reduce( ( n, e, i ) => ( ! f( e, i, a ) ? ( n.push( e ) ? n : n ) : n ), [] );
+//_.reject = ( a, f ) => _.filter( a, ( ) => ! f() );
 
 /** _.partition()
 * Arguments:
@@ -166,7 +166,7 @@ _.indexOf = ( a, v ) => parseInt( Object.keys( a ).filter( i => a[i] === v )[ 0 
 *   }); -> [[2,4],[1,3,5]]
 }
 */
-
+_.partition = ( a, f ) => [ _.filter( a, f ), _.reject( a, f ) ];
 
 /** _.unique()
 * Arguments:
@@ -177,7 +177,7 @@ _.indexOf = ( a, v ) => parseInt( Object.keys( a ).filter( i => a[i] === v )[ 0 
 * Examples:
 *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
 */
-
+_.unique = a => Object.keys( a ).filter( i => _.indexOf( a, a[i] ) === parseInt(i) ).map( i => a[i] );
 
 /** _.map()
 * Arguments:
@@ -194,7 +194,8 @@ _.indexOf = ( a, v ) => parseInt( Object.keys( a ).filter( i => a[i] === v )[ 0 
 * Examples:
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
-
+//_.map = ( c, f ) => Object.keys( c ).reduce( ( n, c[i], i ) => ( c[i] = f( n, e, i ) ), [] );
+_.map = ( c, f ) => Object.keys( c ).map( i => f( c[i], i, c ) );
 
 /** _.pluck()
 * Arguments:
@@ -206,7 +207,7 @@ _.indexOf = ( a, v ) => parseInt( Object.keys( a ).filter( i => a[i] === v )[ 0 
 * Examples:
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
-
+_.pluck = ( a, k ) => _.map( a, ( e, i, c ) => ( e[k] ) );
 
 /** _.contains()
 * Arguments:
@@ -222,7 +223,7 @@ _.indexOf = ( a, v ) => parseInt( Object.keys( a ).filter( i => a[i] === v )[ 0 
 * Examples:
 *   _.contains([1,"two", 3.14], "two") -> true
 */
-
+_.contains = ( a, v ) => _.indexOf( a, v ) > -1;
 
 /** _.every()
 * Arguments:
@@ -244,7 +245,7 @@ _.indexOf = ( a, v ) => parseInt( Object.keys( a ).filter( i => a[i] === v )[ 0 
 *   _.every([2,4,6], function(e){return e % 2 === 0}) -> true
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
-
+_.every = ( c, f = e => e ) => Object.keys( c ).filter( ( e, i, a ) => f( c[e], e, a ) ).length === Object.keys( c ).length;
 
 /** _.some()
 * Arguments:
@@ -266,7 +267,7 @@ _.indexOf = ( a, v ) => parseInt( Object.keys( a ).filter( i => a[i] === v )[ 0 
 *   _.some([1,3,5], function(e){return e % 2 === 0}) -> false
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
-
+_.some = ( c, f = e => e ) => Object.keys( c ).filter( ( e, i, a ) => f( c[e], e, a ) ).length > 0;
 
 /** _.reduce()
 * Arguments:
@@ -286,7 +287,7 @@ _.indexOf = ( a, v ) => parseInt( Object.keys( a ).filter( i => a[i] === v )[ 0 
 * Examples:
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
-
+_.reduce = ( a, f, s ) => a.reduce( ( s, e, i ) => f( s, e, i ), a[0] );
 
 /** _.extend()
 * Arguments:
@@ -302,7 +303,8 @@ _.indexOf = ( a, v ) => parseInt( Object.keys( a ).filter( i => a[i] === v )[ 0 
 *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
-//_.extend = ( ...a ) => a.slice( 1 ).map( o => a[0] = Object.assign( o, a[0] ) ) ? a[0] : a[0];
+_.extend = ( ...a ) => a.slice( 1 ).reduce( ( acc, o, i, a ) => Object.assign( acc, o ), a[0] );
+
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
