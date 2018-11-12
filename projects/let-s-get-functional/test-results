@@ -1,0 +1,56 @@
+
+
+  Let's Get Functional
+    maleCount()
+      ✓ is a function
+      ✓ should return a number
+      ✓ should find number of males
+    femaleCount()
+      ✓ is a function
+      ✓ should return a number
+      ✓ should find number of females
+    oldestCustomer()
+      ✓ is a function
+      ✓ should return a string
+      ✓ should find oldest customer name
+    youngestCustomer()
+      ✓ is a function
+      ✓ should return a string
+      ✓ should find youngest customer name
+    averageBalance()
+      ✓ is a function
+      ✓ should return a string
+      ✓ should find average balance of customers
+    firstLetterCount()
+      ✓ is a function
+      ✓ should return a string
+      ✓ should work if uppercase or lowercase
+      ✓ should find 1 customer with a name starting with B
+      ✓ should find 2 customer with a name starting with D
+      ✓ should find 0 customer with a name starting with F
+    friendFirstLetterCount()
+      ✓ is a function
+      ✓ should return a string
+      ✓ should work if uppercase or lowercase
+      ✓ should find Doris Smith has 1 friend with an B name
+      ✓ should find Adele Mullen has 2 friend with an J name
+      ✓ should find Olga Newton has 2 friend with an C name
+    friendsCount()
+      ✓ is a function
+      ✓ should return an array
+      ✓ should find all customers that are friends with Olga Newton
+      ✓ should find all customers that are friends with Doyle Erickson
+      ✓ should find all customers that are friends with Bucker Kennedy
+      ✓ should find all customers that are friends with Shelly Walton
+    topThreeTags()
+      ✓ is a function
+      ✓ should return an array
+      ✓ should find three of the top tags
+    genderCount()
+      ✓ is a function
+      ✓ should return an object
+      ✓ should return a summary of customer genders
+
+
+  39 passing (31ms)
+

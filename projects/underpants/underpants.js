@@ -43,7 +43,6 @@ _.identity = v => v;
 */
 _.typeOf = v => Object.prototype.toString.call( v ).replace( /\[object (.*)\]/, "$1" ).toLowerCase();
 
-
 /** _.first()
 * Arguments:
 *   1) An array
@@ -287,8 +286,14 @@ _.some = ( c, f = e => e ) => Object.keys( c ).filter( ( e, i, a ) => f( c[e], e
 * Examples:
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
-_.reduce = ( a, f, s ) => a.reduce( ( s, e, i ) => f( s, e, i ), a[0] );
-
+_.reduce = ( a, f, s ) => {
+    for (var i = 0; i < a.length; i++) {
+        s = ( s === undefined ) ? a[i] : f( s, a[i], i );
+    }
+    return s;
+};
+//_.reduce = ( a, f, s ) => a.reduce( ( s, e, i ) => s === undefined  ? e : f( s, e, i ) );
+//_.reduce([10,20,30,40], ( s, e, i, a ) => s * e * ( i + 1) );
 /** _.extend()
 * Arguments:
 *   1) An Object
