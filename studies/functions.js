@@ -24,7 +24,7 @@
 
 // 1. Declaring and calling named functions //
 function greet ( periodOfDay ) {
-    return `Good ${periodOfDay}!`;
+    return `Good ${periodOfDay}!`; // return a string built with a template literal
 }
 console.log( greet( 'morning' ) ); // will log "Good morning!" to the console
 
@@ -35,9 +35,9 @@ let randomInteger = function ( max ) {
 console.log( randomInteger( 10 ) ); // will log a random integer between 1 and 10 to the console
 
 // 3. anonymous vs. named functions //
-let exponent = function ( exp ) {         // this anonymous function gets named by the let assignment
+let exponent = function ( exp ) {         // this anonymous function expression gets named by the let assignment
     return function ( base ) {            // this anonymous function can stay anonymous be assigned with a call to exponent()
-        return Math.pow( base, exp );
+        return Math.pow( base, exp );     // our nested function, when called, returns the base numer to the exp-th power
     }
 }
 let cube = exponent( 3 );
@@ -51,49 +51,52 @@ console.log( testEquality( 'everything', 'nothing' ) );    // 'everything' and '
 console.log( testEquality( 42, 42 ) );                     // 42 and 42 are arguments
 
 // 5. returning values from functions //
-function titleCase ( string ) {
-    let words = string.split(' ');
-    return words.map(
-        word => word.replace(
-            /^(.)(.*)$/,
-            ( m, m1, m2 ) => m1.toUpperCase() + m2.toLowerCase()
+function titleCase ( string ) {       // take a string of space-delimited words and return the string with each word's first letter capitalized
+    let words = string.split(' ');    // split the string into tokens, using a single space as a delimiter
+    return words.map(                 // map() iterates over each word in the sentence and replaces it with a transformed word
+        word => word.replace(         // this arrow function uses replace to capitalize the first letter of each word
+            /^(.)(.*)$/,              // ah, the simple beauty of regular expressions
+            ( m, m1, m2 ) => m1.toUpperCase() + m2.toLowerCase()   // this arrow function handles the actual capitalization of the first character
         )
-    ).join( ' ' );
+    ).join( ' ' );                    // finally, we reassemble our words into a new string, again delimited by a space
 }
 console.log( titleCase( 'this wAs a SEntence wIth stRANGe CASE.') ); // logs "This Was A Sentence With Strange Case." to the console
 
 // 6. scope and functions //
-let message = "public";
+let message = "public";          // the let keyword scopes this message variable globally, but doesn't hoist it
 
 function hidden () {
-    let message = "secret";
+    let message = "secret";      // the let keyword scopes this message variable to the hidden() function
     return message;
 }
 
-console.log( "The global message is " + message + ", but the hidden() message is " + hidden() + "." );
+console.log( "The global message is " + message             // this will show us the globally scoped  message
+             + ", but the hidden() message is " + hidden()  // this will show us the message scoped within the hidden() function
+             + "." ); // result: "The global message is public, but the hidden() message is private."
 
 // 7. closures //
 function daySegment() {
     
-    let now = new Date( 1540744868000 );
+    let now = new Date( 1540744868000 );    // this variable is created in daySegment()'s scope'
     
-    return function ( update ) {
-        let segment;
+    return function ( update ) {            // this function relies on a variable, now, created in its containing scope
+        let segment;                        // this variable is local to this anonymous function
         if ( update ) now = new Date();     // if called with a true argument the closure will update now, which comes from a closed scope
-        switch ( true ) {
-            case now.getHours() < 12:
-                segment = 'morning';
-                break;
+        switch ( true ) {                   // true is the result we are looking for
+            case now.getHours() < 12:       // if this expression evaluates to true, then our switch will trigger execution of this case
+                segment = 'morning';        // in this case, our local variable is set to 'morning'
+                break;                      // the break keyword tells us to stop executing for this case
             case now.getHours() < 17:
                 segment = 'afternoon';
                 break;
             case now.getHours() < 21:
                 segment = 'evening';
                 break;
-            default:
+            default:                        // this is our catch-all case, if all of the above tests evaluate to false
                 segment = 'night';
         }        
-        return segment;
+        return segment;                     // finally, our anonymous function returns our local variable, which is calculated using
+                                            // a variable from daySegment()'s scope, which is what makes this a returned function a closure
     }
 }
 

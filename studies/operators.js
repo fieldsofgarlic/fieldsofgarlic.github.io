@@ -77,6 +77,23 @@ console.log( val );    // 6
 val--;                 // decrements the value of val by one
 console.log( val );    // 5
 
+console.log( -val );   // -5 (used before a value, the - operator negates a value)
+
+console.log( typeof val );  // 'number' (returns a string indicating the data type,
+                            //           but with some sometime unspecific results)
+ 
+console.log( typeof 's' );          // 'string'
+console.log( typeof undefined );    // 'undefined'
+console.log( typeof NaN );          // 'NaN'
+console.log( typeof ( p => p ) );   // 'function'
+console.log( typeof { a: 2 } );     // 'object'
+console.log( typeof [ 1, 2 ] );     // 'object'  <- not as specific as you might want
+console.log( typeof null );         // 'object'  <- not as specific as you might want
+
+Object.prototype.toString.call( null );  // '[object Null]' is a more specific result, which can then be transformed...
+Object.prototype.toString.call( null ).replace( /.*\s(.*)\]/, "$1" ).toLowerCase();  // ...like this, into 'null'...
+Object.prototype.toString.call( null ).split( ' ' )[1].slice( 0, -1 ).toLowerCase(); // ...or this
+
 // since the ++ is after the variable name, val gets incremented after the comparison
 val = 5;
 if ( val++ === 6 ) {

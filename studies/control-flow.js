@@ -15,7 +15,7 @@ if ( person === 'me' ) {
 } // this will report 'Identity crisis averted.' to the console
 
 // 2. if-else - adds a secondary condition to try when a prior condition fails //
-const age = 50;
+const age = 44;
 if (age > 50) {
     console.log("It's all downhill from here.");
 } else if (age < 50) {
