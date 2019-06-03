@@ -292,7 +292,7 @@ _.reduce = ( a, f, s ) => {
     }
     return s;
 };
-//_.reduce = ( a, f, s ) => a.reduce( ( s, e, i ) => s === undefined  ? e : f( s, e, i ) );
+_.reduce = ( a, f, s ) => a.reduce( ( s, e, i ) => s === undefined ? e : f( s, e, i ) );
 //_.reduce([10,20,30,40], ( s, e, i, a ) => s * e * ( i + 1) );
 /** _.extend()
 * Arguments:
